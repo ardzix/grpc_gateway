@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package payment;
+
+option go_package = "api/proto";
+
+service PaymentService {
+    rpc ProcessPayment (ProcessPaymentRequest) returns (ProcessPaymentResponse);
+    rpc RefundPayment (RefundPaymentRequest) returns (RefundPaymentResponse);
+    rpc GetPaymentStatus (GetPaymentStatusRequest) returns (GetPaymentStatusResponse);
+    rpc ListPayments (ListPaymentsRequest) returns (ListPaymentsResponse);
+}
+
+message ProcessPaymentRequest {
+    string user_id = 1;
+    double amount = 2;
+    string currency = 3;
+    string payment_method = 4;
+}
+
+message ProcessPaymentResponse {
+    string payment_id = 1;
+    string status = 2;
+}
+
+message RefundPaymentRequest {
+    string payment_id = 1;
+    double amount = 2;
+}
+
+message RefundPaymentResponse {
+    string refund_id = 1;
+    string status = 2;
+}
+
+message GetPaymentStatusRequest {
+    string payment_id = 1;
+}
+
+message GetPaymentStatusResponse {
+    string payment_id = 1;
+    string status = 2;
+    string error_message = 3;
+}
+
+message ListPaymentsRequest {
+    string user_id = 1;
+    int32 page = 2;
+    int32 page_size = 3;
+}
+
+message ListPaymentsResponse {
+    repeated Payment payments = 1;
+    int32 total_count = 2;
+}
+
+message Payment {
+    string payment_id = 1;
+    string user_id = 2;
+    double amount = 3;
+    string currency = 4;
+    string status = 5;
+    string created_at = 6;
+}
+
