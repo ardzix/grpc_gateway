@@ -54,6 +54,11 @@ class PaymentServiceStub(object):
                 request_serializer=payment__pb2.GetPaymentStatusRequest.SerializeToString,
                 response_deserializer=payment__pb2.GetPaymentStatusResponse.FromString,
                 _registered_method=True)
+        self.GetPaymentDetail = channel.unary_unary(
+                '/payment.PaymentService/GetPaymentDetail',
+                request_serializer=payment__pb2.GetPaymentDetailRequest.SerializeToString,
+                response_deserializer=payment__pb2.GetPaymentDetailResponse.FromString,
+                _registered_method=True)
         self.ListPayments = channel.unary_unary(
                 '/payment.PaymentService/ListPayments',
                 request_serializer=payment__pb2.ListPaymentsRequest.SerializeToString,
@@ -82,6 +87,12 @@ class PaymentServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetPaymentDetail(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def ListPayments(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -105,6 +116,11 @@ def add_PaymentServiceServicer_to_server(servicer, server):
                     servicer.GetPaymentStatus,
                     request_deserializer=payment__pb2.GetPaymentStatusRequest.FromString,
                     response_serializer=payment__pb2.GetPaymentStatusResponse.SerializeToString,
+            ),
+            'GetPaymentDetail': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetPaymentDetail,
+                    request_deserializer=payment__pb2.GetPaymentDetailRequest.FromString,
+                    response_serializer=payment__pb2.GetPaymentDetailResponse.SerializeToString,
             ),
             'ListPayments': grpc.unary_unary_rpc_method_handler(
                     servicer.ListPayments,
@@ -193,6 +209,33 @@ class PaymentService(object):
             '/payment.PaymentService/GetPaymentStatus',
             payment__pb2.GetPaymentStatusRequest.SerializeToString,
             payment__pb2.GetPaymentStatusResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetPaymentDetail(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/payment.PaymentService/GetPaymentDetail',
+            payment__pb2.GetPaymentDetailRequest.SerializeToString,
+            payment__pb2.GetPaymentDetailResponse.FromString,
             options,
             channel_credentials,
             insecure,

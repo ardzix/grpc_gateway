@@ -9,7 +9,8 @@ from .grpc_client import GRPCClient
 from .serializers import (
     ProcessPaymentSerializer, ProcessPaymentResponseSerializer,
     GetPaymentStatusSerializer, GetPaymentStatusResponseSerializer,
-    ListPaymentsSerializer, ListPaymentsResponseSerializer
+    ListPaymentsSerializer, ListPaymentsResponseSerializer,
+    PaymentDetailSerializer
 )
 
 
@@ -37,6 +38,23 @@ class ProcessPaymentView(APIView):
             return Response(response_serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class ListPaymentsView(APIView):
+    @swagger_auto_schema(
+        query_serializer=ListPaymentsSerializer,
+        responses={200: ListPaymentsResponseSerializer}
+    )
+    def get(self, request):
+        serializer = ListPaymentsSerializer(data=request.query_params)
+        if serializer.is_valid():
+            client = GRPCClient()
+            response = client.list_payments(**serializer.validated_data)
+            response_serializer = ListPaymentsResponseSerializer({
+                'payments': response.payments,
+                'total_count': response.total_count
+            })
+            return Response(response_serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 class GetPaymentStatusView(APIView):
     @swagger_auto_schema(
         responses={200: GetPaymentStatusResponseSerializer},
@@ -56,20 +74,21 @@ class GetPaymentStatusView(APIView):
             })
             return Response(response_serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 
-class ListPaymentsView(APIView):
+class GetPaymentDetailView(APIView):
     @swagger_auto_schema(
-        query_serializer=ListPaymentsSerializer,
-        responses={200: ListPaymentsResponseSerializer}
+        responses={200: GetPaymentStatusResponseSerializer},
+        manual_parameters=[
+            openapi.Parameter('payment_id', openapi.IN_PATH, description="Payment ID", type=openapi.TYPE_STRING)
+        ]
     )
-    def get(self, request):
-        serializer = ListPaymentsSerializer(data=request.query_params)
+    def get(self, request, payment_id):
+        serializer = GetPaymentStatusSerializer(data={'payment_id': payment_id})
         if serializer.is_valid():
-            client = GRPCClient()
-            response = client.list_payments(**serializer.validated_data)
-            response_serializer = ListPaymentsResponseSerializer({
-                'payments': response.payments,
-                'total_count': response.total_count
-            })
+            grpc_client = GRPCClient()
+            response = grpc_client.get_payment_detail(serializer.validated_data['payment_id'])
+            print(response)
+            response_serializer = PaymentDetailSerializer(response)
             return Response(response_serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
