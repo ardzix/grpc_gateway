@@ -18,7 +18,12 @@ from .serializers import (
 class ProcessPaymentView(APIView):
     @swagger_auto_schema(
         request_body=ProcessPaymentSerializer,
-        responses={200: ProcessPaymentResponseSerializer}
+        responses={
+            200: openapi.Response(
+                description="Payment processed successfully",
+                schema=ProcessPaymentSerializer,
+            )
+        },
     )
     def post(self, request):
         serializer = ProcessPaymentSerializer(data=request.data)

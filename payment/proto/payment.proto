@@ -16,6 +16,10 @@ message ProcessPaymentRequest {
     double amount = 2;
     string currency = 3;
     string payment_method = 4;
+    string phone_number = 5;
+    string ewallet_checkout_method = 6;
+    string qr_type = 7;
+    string qr_callback_url = 8;
 }
 
 message ProcessPaymentResponse {

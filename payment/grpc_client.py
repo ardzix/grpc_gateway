@@ -8,12 +8,15 @@ class GRPCClient:
         self.channel = grpc.insecure_channel(f'{host}:{port}')
         self.stub = payment_pb2_grpc.PaymentServiceStub(self.channel)
 
-    def process_payment(self, user_id, amount, currency, payment_method):
+    def process_payment(self, user_id, amount, currency, payment_method, *args, **kwargs):
         request = payment_pb2.ProcessPaymentRequest(
             user_id=user_id,
             amount=amount,
             currency=currency,
-            payment_method=payment_method
+            payment_method=payment_method,
+            ewallet_checkout_method=kwargs.get('ewallet_checkout_method'),
+            qr_type=kwargs.get('qr_type'),
+            qr_callback_url=kwargs.get('qr_callback_url')
         )
         return self.stub.ProcessPayment(request)
 

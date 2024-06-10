@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rpayment.proto\x12\x07payment\"b\n\x15ProcessPaymentRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x0e\n\x06\x61mount\x18\x02 \x01(\x01\x12\x10\n\x08\x63urrency\x18\x03 \x01(\t\x12\x16\n\x0epayment_method\x18\x04 \x01(\t\"<\n\x16ProcessPaymentResponse\x12\x12\n\npayment_id\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\t\":\n\x14RefundPaymentRequest\x12\x12\n\npayment_id\x18\x01 \x01(\t\x12\x0e\n\x06\x61mount\x18\x02 \x01(\x01\":\n\x15RefundPaymentResponse\x12\x11\n\trefund_id\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\t\"-\n\x17GetPaymentStatusRequest\x12\x12\n\npayment_id\x18\x01 \x01(\t\"U\n\x18GetPaymentStatusResponse\x12\x12\n\npayment_id\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\t\x12\x15\n\rerror_message\x18\x03 \x01(\t\"G\n\x13ListPaymentsRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x0c\n\x04page\x18\x02 \x01(\x05\x12\x11\n\tpage_size\x18\x03 \x01(\x05\"O\n\x14ListPaymentsResponse\x12\"\n\x08payments\x18\x01 \x03(\x0b\x32\x10.payment.Payment\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\"t\n\x07Payment\x12\x12\n\npayment_id\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x12\x0e\n\x06\x61mount\x18\x03 \x01(\x01\x12\x10\n\x08\x63urrency\x18\x04 \x01(\t\x12\x0e\n\x06status\x18\x05 \x01(\t\x12\x12\n\ncreated_at\x18\x06 \x01(\t2\xd9\x02\n\x0ePaymentService\x12Q\n\x0eProcessPayment\x12\x1e.payment.ProcessPaymentRequest\x1a\x1f.payment.ProcessPaymentResponse\x12N\n\rRefundPayment\x12\x1d.payment.RefundPaymentRequest\x1a\x1e.payment.RefundPaymentResponse\x12W\n\x10GetPaymentStatus\x12 .payment.GetPaymentStatusRequest\x1a!.payment.GetPaymentStatusResponse\x12K\n\x0cListPayments\x12\x1c.payment.ListPaymentsRequest\x1a\x1d.payment.ListPaymentsResponseB\x0bZ\tapi/protob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rpayment.proto\x12\x07payment\"\xc3\x01\n\x15ProcessPaymentRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x0e\n\x06\x61mount\x18\x02 \x01(\x01\x12\x10\n\x08\x63urrency\x18\x03 \x01(\t\x12\x16\n\x0epayment_method\x18\x04 \x01(\t\x12\x14\n\x0cphone_number\x18\x05 \x01(\t\x12\x1f\n\x17\x65wallet_checkout_method\x18\x06 \x01(\t\x12\x0f\n\x07qr_type\x18\x07 \x01(\t\x12\x17\n\x0fqr_callback_url\x18\x08 \x01(\t\"<\n\x16ProcessPaymentResponse\x12\x12\n\npayment_id\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\t\":\n\x14RefundPaymentRequest\x12\x12\n\npayment_id\x18\x01 \x01(\t\x12\x0e\n\x06\x61mount\x18\x02 \x01(\x01\":\n\x15RefundPaymentResponse\x12\x11\n\trefund_id\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\t\"-\n\x17GetPaymentStatusRequest\x12\x12\n\npayment_id\x18\x01 \x01(\t\"U\n\x18GetPaymentStatusResponse\x12\x12\n\npayment_id\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\t\x12\x15\n\rerror_message\x18\x03 \x01(\t\"G\n\x13ListPaymentsRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x0c\n\x04page\x18\x02 \x01(\x05\x12\x11\n\tpage_size\x18\x03 \x01(\x05\"O\n\x14ListPaymentsResponse\x12\"\n\x08payments\x18\x01 \x03(\x0b\x32\x10.payment.Payment\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\"t\n\x07Payment\x12\x12\n\npayment_id\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x12\x0e\n\x06\x61mount\x18\x03 \x01(\x01\x12\x10\n\x08\x63urrency\x18\x04 \x01(\t\x12\x0e\n\x06status\x18\x05 \x01(\t\x12\x12\n\ncreated_at\x18\x06 \x01(\t2\xd9\x02\n\x0ePaymentService\x12Q\n\x0eProcessPayment\x12\x1e.payment.ProcessPaymentRequest\x1a\x1f.payment.ProcessPaymentResponse\x12N\n\rRefundPayment\x12\x1d.payment.RefundPaymentRequest\x1a\x1e.payment.RefundPaymentResponse\x12W\n\x10GetPaymentStatus\x12 .payment.GetPaymentStatusRequest\x1a!.payment.GetPaymentStatusResponse\x12K\n\x0cListPayments\x12\x1c.payment.ListPaymentsRequest\x1a\x1d.payment.ListPaymentsResponseB\x0bZ\tapi/protob\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -22,24 +22,24 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'payment_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z\tapi/proto'
-  _globals['_PROCESSPAYMENTREQUEST']._serialized_start=26
-  _globals['_PROCESSPAYMENTREQUEST']._serialized_end=124
-  _globals['_PROCESSPAYMENTRESPONSE']._serialized_start=126
-  _globals['_PROCESSPAYMENTRESPONSE']._serialized_end=186
-  _globals['_REFUNDPAYMENTREQUEST']._serialized_start=188
-  _globals['_REFUNDPAYMENTREQUEST']._serialized_end=246
-  _globals['_REFUNDPAYMENTRESPONSE']._serialized_start=248
-  _globals['_REFUNDPAYMENTRESPONSE']._serialized_end=306
-  _globals['_GETPAYMENTSTATUSREQUEST']._serialized_start=308
-  _globals['_GETPAYMENTSTATUSREQUEST']._serialized_end=353
-  _globals['_GETPAYMENTSTATUSRESPONSE']._serialized_start=355
-  _globals['_GETPAYMENTSTATUSRESPONSE']._serialized_end=440
-  _globals['_LISTPAYMENTSREQUEST']._serialized_start=442
-  _globals['_LISTPAYMENTSREQUEST']._serialized_end=513
-  _globals['_LISTPAYMENTSRESPONSE']._serialized_start=515
-  _globals['_LISTPAYMENTSRESPONSE']._serialized_end=594
-  _globals['_PAYMENT']._serialized_start=596
-  _globals['_PAYMENT']._serialized_end=712
-  _globals['_PAYMENTSERVICE']._serialized_start=715
-  _globals['_PAYMENTSERVICE']._serialized_end=1060
+  _globals['_PROCESSPAYMENTREQUEST']._serialized_start=27
+  _globals['_PROCESSPAYMENTREQUEST']._serialized_end=222
+  _globals['_PROCESSPAYMENTRESPONSE']._serialized_start=224
+  _globals['_PROCESSPAYMENTRESPONSE']._serialized_end=284
+  _globals['_REFUNDPAYMENTREQUEST']._serialized_start=286
+  _globals['_REFUNDPAYMENTREQUEST']._serialized_end=344
+  _globals['_REFUNDPAYMENTRESPONSE']._serialized_start=346
+  _globals['_REFUNDPAYMENTRESPONSE']._serialized_end=404
+  _globals['_GETPAYMENTSTATUSREQUEST']._serialized_start=406
+  _globals['_GETPAYMENTSTATUSREQUEST']._serialized_end=451
+  _globals['_GETPAYMENTSTATUSRESPONSE']._serialized_start=453
+  _globals['_GETPAYMENTSTATUSRESPONSE']._serialized_end=538
+  _globals['_LISTPAYMENTSREQUEST']._serialized_start=540
+  _globals['_LISTPAYMENTSREQUEST']._serialized_end=611
+  _globals['_LISTPAYMENTSRESPONSE']._serialized_start=613
+  _globals['_LISTPAYMENTSRESPONSE']._serialized_end=692
+  _globals['_PAYMENT']._serialized_start=694
+  _globals['_PAYMENT']._serialized_end=810
+  _globals['_PAYMENTSERVICE']._serialized_start=813
+  _globals['_PAYMENTSERVICE']._serialized_end=1158
 # @@protoc_insertion_point(module_scope)
