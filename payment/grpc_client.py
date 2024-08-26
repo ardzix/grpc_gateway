@@ -2,7 +2,7 @@ import grpc
 from payment.proto import payment_pb2_grpc, payment_pb2
 
 class GRPCClient:
-    def __init__(self, host='localhost', port=50051):
+    def __init__(self, host='localhost', port=50056):
         self.channel = grpc.insecure_channel(f'{host}:{port}')
         self.stub = payment_pb2_grpc.PaymentServiceStub(self.channel)
 
